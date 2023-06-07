@@ -1,0 +1,9 @@
+name: WORLD-env
+dependencies:
+- numpy==1.24.3
+- scipy==1.10.1
+- numba==0.57.0
+- cython==0.29.35
+- simpleaudio==1.0.2
+- matplotlib==3.7.1
+- ipython
