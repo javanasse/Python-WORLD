@@ -5,15 +5,8 @@ This is a line-by-line implementation of WORLD vocoder (Matlab, C++) in python. 
 
 For technical detail, please check the [website](http://www.kki.yamanashi.ac.jp/~mmorise/world/english/).
 
-# INSTALATION
+# INSTALLATION
 *********************
-
-Python WORLD uses the following dependencies:
-
-* numpy, scipy
-* matplotlib
-* numba
-* simpleaudio (just for demonstration)
 
 Install python dependencies:
 
@@ -21,16 +14,23 @@ Install python dependencies:
 pip install -r requirements.txt
 ```
 
-Or import the project with [PyCharm](https://www.jetbrains.com/pycharm/) and open ```requirements.txt``` in PyCharm. 
-It will ask to install the missing libraries by itself. 
+Alternatively, create a `conda` environment with the dependencies in the `environment.yml`: 
+
+```
+conda env create
+```
 
 # EXAMPLE
 **************
 
-The easiest way to run those examples is to import the ```Python-WORLD``` folder into PyCharm.
-
 In ```example/prodosy.py```, there is an example of analysis/modification/synthesis with WORLD vocoder. 
 It has some examples of pitch, duration, spectrum modification.
+
+I run this using `ipython` with:
+
+```
+ipython -- example/prosody.py
+```
 
 First, we read an audio file:
 
@@ -88,18 +88,7 @@ Check out [speech samples](https://tuanad121.github.io/samples/2019-09-15-Manifo
 When you want to specify your own ```fft_size```, you have to use ```f0_floor = 3.0 * fs / fft_size```. 
 If you decrease ```fft_size```, the ```f0_floor``` increases. But, a high ```f0_floor``` might be not good for the analysis of male voices.
 
-* The F0 analysis ```Harvest``` is the slowest one. It's speeded up using ```numba``` and ```python multiprocessing```. The more cores you have, the faster it can become. However, you can use your own F0 analysis. In our case, we support 3 F0 analysis: ```DIO, HARVEST, and SWIPE'```
-
 
 # CITATION:
 
-If you find the code helpful and want to cite it, please use:
-
 Dinh, T., Kain, A., & Tjaden, K. (2019). Using a manifold vocoder for spectral voice and style conversion. Proceedings of the Annual Conference of the International Speech Communication Association, INTERSPEECH, 2019-September, 1388-1392.
-
-
-# CONTACT US
-******************
-
-
-Post your questions, suggestions, and discussions to GitHub Issues.
