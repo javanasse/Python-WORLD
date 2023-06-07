@@ -3,8 +3,6 @@
 
 This is a line-by-line implementation of WORLD vocoder (Matlab, C++) in python. It supports *python 3.0* and later.
 
-For technical detail, please check the [website](http://www.kki.yamanashi.ac.jp/~mmorise/world/english/).
-
 # INSTALLATION
 *********************
 
