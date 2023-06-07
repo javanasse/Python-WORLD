@@ -151,7 +151,7 @@ def RefineCandidates(x: np.ndarray, fs: float, temporal_positions: np.ndarray,
 
 
 #################################################################################################
-@numba.jit((numba.float64[:],), nopython=True, cache=True)
+# @numba.jit((numba.float64[:],), nopython=True, cache=True)
 def round_matlab(x: np.ndarray) -> np.ndarray:
     '''
     round function works as matlab round
@@ -235,7 +235,7 @@ def RemoveUnreliableCandidates(f0_candidates: np.ndarray, f0_candidates_score: n
 
 
 ###################################################################################################
-@numba.jit((numba.float64, numba.float64[:], numba.float64), nopython=True, cache=True)  # eager compilation through function signature
+#@numba.jit((numba.float64, numba.float64[:], numba.float64), nopython=True, cache=True)  # eager compilation through function signature
 def SelectBestF0(reference_f0: float, f0_candidates: np.ndarray, allowed_range: float) -> tuple:
     best_f0 = 0
     best_error = allowed_range
@@ -280,7 +280,7 @@ def CalculateRawEvent(boundary_f0: float, fs: int, y_spectrum: np.ndarray, y_len
 
 ###################################################################################################
 # negative zero crossing: going from positive to negative
-@numba.jit((numba.float64[:], numba.float64), nopython=True, cache=True)
+#@numba.jit((numba.float64[:], numba.float64), nopython=True, cache=True)
 def ZeroCrossingEngine(x: np.ndarray, fs: int) -> tuple:
     y = np.empty_like(x)
     y[:-1] = x[1:]
@@ -321,7 +321,7 @@ def SearchF0Base(f0_candidates: np.ndarray, f0_candidates_score: np.ndarray) -> 
 
 ####################################################################################################
 # Step 1: Rapid change of f0 contour is replaced by 0
-@numba.jit((numba.float64[:], numba.float64), nopython=True, cache=True)
+#@numba.jit((numba.float64[:], numba.float64), nopython=True, cache=True)
 def FixStep1(f0_base: np.ndarray, allowed_range: float) -> np.ndarray:
     f0_step1 = np.empty_like(f0_base)
     f0_step1[:] = f0_base
