@@ -1,9 +1,12 @@
 import numpy as np
 import numba
 from scipy.fftpack import fft, ifft, fftshift
-from scipy.signal import hanning
+from scipy.signal.windows import hann 
 
 import random
+
+def hanning(M):
+    return hann(M)
 
 def get_seeds_signals(fs: int, fft_size: int=None, noise_length: int=None):
     if fft_size == None:

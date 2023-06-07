@@ -1,13 +1,16 @@
 # 3rd-party imports
 import numpy as np
 from scipy.interpolate import interp1d
-from scipy.signal import hanning
+from scipy.signal.windows import hann 
 from scipy.fftpack import fft, ifft
 import numba
 import matplotlib.pyplot as plt
 
 # build-in imports
 from decimal import Decimal, ROUND_HALF_UP
+
+def hanning(M):
+    return hann(M)
 
 def synthesisRequiem(source_object, filter_object, seeds_signals):
     excitation_signal = get_excitation_signal(source_object['temporal_positions'],

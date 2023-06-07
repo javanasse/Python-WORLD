@@ -7,7 +7,7 @@ from scipy import signal
 
 from world import main
 
-wav_path = Path('../test/test-mwm.wav')
+wav_path = Path('test/test-mwm.wav')
 print(wav_path)
 fs, x_int16 = wavread(wav_path)
 x = x_int16 / (2 ** 15 - 1)
