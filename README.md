@@ -6,48 +6,31 @@ This is a line-by-line implementation of WORLD vocoder (Matlab, C++) in python. 
 # INSTALLATION
 *********************
 
-Install python dependencies:
-
 ```
-pip install -r requirements.txt
-```
-
-Alternatively, create a `conda` environment with the dependencies in the `environment.yml`: 
-
-```
-conda env create
+pip install worldvocoder
 ```
 
 # EXAMPLE
 **************
 
-In ```example/prodosy.py```, there is an example of analysis/modification/synthesis with WORLD vocoder. 
-It has some examples of pitch, duration, spectrum modification.
-
-I run this using `ipython` with:
-
-```
-ipython -- example/prosody.py
-```
-
-First, we read an audio file:
-
 ```python
-from scipy.io.wavfile import read as wavread
-fs, x_int16 = wavread(wav_path)
-x = x_int16 / (2 ** 15 - 1) # to float
+import worldvocoder as wv
+import soundfile as sf
+import librosa
+
+# read audio
+audio, sample_rate = sf.read("some_file.wav")
+audio = librosa.to_mono(audio)
+
+# initialize vocoder
+vocoder = wv.World()
+
+# encode audio
+dat = vocoder.encode(sample_rate, audio, f0_method='harvest')
+
 ```
 
-Then, we declare a vocoder and encode the audio file:
-
-```python
-from world import main
-vocoder = main.World()
-# analysis
-dat = vocoder.encode(fs, x, f0_method='harvest')
-```
-
-in which, ```fs``` is sampling frequency and ```x``` is the speech signal.
+in which, ```sample_rate``` is sampling frequency and ```audio``` is the speech/singing signal.
 
 The ```dat``` is a dictionary object that contains pitch, magnitude spectrum, and aperiodicity. 
 
@@ -65,7 +48,12 @@ We can make speech faster or slower:
 dat = vocoder.scale_duration(dat, 2)
 ```
 
-In ```test/speed.py```, we estimate the time of analysis.
+To resynthesize the audio:
+
+```python
+dat = vocoder.decode(dat)
+output = dat["out"]
+```
 
 To use d4c_requiem analysis and requiem_synthesis in WORLD version 0.2.2, set the variable ```is_requiem=True```:
 
