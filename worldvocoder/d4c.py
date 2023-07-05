@@ -166,7 +166,7 @@ def get_static_group_delay(static_centroid, smoothed_power_spectrum, fs, f0, fft
     '''
           Second step: calculation of parameter shaping
     '''    
-    group_delay = static_centroid / smoothed_power_spectrum # T_g(w)
+    group_delay = static_centroid / (smoothed_power_spectrum + 0.0000000001) # T_g(w)
     group_delay = linear_smoothing(group_delay, fs, fft_size, f0 / 2) # T_gs(w)
     group_delay = np.append(group_delay, group_delay[-2 : 0 : -1])
     smoothed_group_delay = linear_smoothing(group_delay, fs, fft_size, f0) # T_gb(w)
