@@ -210,7 +210,7 @@ def fftfilt(b, x, *n):
         N_fft = 2**nextpow2(n)
     else:
 
-        if N_x > N_b:
+        if np.floor(np.log2(N_x)) > np.ceil(np.log2(N_b)):
 
             # When the filter length is smaller than the signal,
             # choose the FFT length and block size that minimize the
