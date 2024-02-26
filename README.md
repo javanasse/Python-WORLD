@@ -6,8 +6,9 @@ This is a line-by-line implementation of WORLD vocoder (Matlab, C++) in python. 
 # INSTALLATION
 *********************
 
-```
-pip install worldvocoder
+Clone this repository and install with:
+```console
+python -m pip install -e .  
 ```
 
 # EXAMPLE
